@@ -23,10 +23,10 @@ namespace boost { namespace fusion
         vector_data1(U0 && arg0
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) {}
         vector_data1(
             vector_data1&& other)
-            : m0(std::forward<T0>( other.m0)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data1(
@@ -92,7 +92,7 @@ namespace boost { namespace fusion
         vector1(U0&& _0
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
           )
-         : base_type(std::forward<U0>( _0)) {}
+         : base_type(BOOST_FUSION_FWD_ELEM(U0, _0)) {}
         BOOST_FUSION_GPU_ENABLED
         vector1(vector1&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
@@ -180,10 +180,10 @@ namespace boost { namespace fusion
         vector_data2(U0 && arg0 , U1 && arg1
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) , m1(std::forward<U1>( arg1)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) , m1(BOOST_FUSION_FWD_ELEM(U1, arg1)) {}
         vector_data2(
             vector_data2&& other)
-            : m0(std::forward<T0>( other.m0)) , m1(std::forward<T1>( other.m1)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) , m1(BOOST_FUSION_FWD_ELEM(T1, other.m1)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data2(
@@ -245,7 +245,7 @@ namespace boost { namespace fusion
         template <typename U0 , typename U1>
         BOOST_FUSION_GPU_ENABLED
         vector2(U0 && arg0 , U1 && arg1)
-            : base_type(std::forward<U0>( arg0) , std::forward<U1>( arg1)) {}
+            : base_type(BOOST_FUSION_FWD_ELEM(U0, arg0) , BOOST_FUSION_FWD_ELEM(U1, arg1)) {}
         BOOST_FUSION_GPU_ENABLED
         vector2(vector2&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
@@ -331,10 +331,10 @@ namespace boost { namespace fusion
         vector_data3(U0 && arg0 , U1 && arg1 , U2 && arg2
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) , m1(std::forward<U1>( arg1)) , m2(std::forward<U2>( arg2)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) , m1(BOOST_FUSION_FWD_ELEM(U1, arg1)) , m2(BOOST_FUSION_FWD_ELEM(U2, arg2)) {}
         vector_data3(
             vector_data3&& other)
-            : m0(std::forward<T0>( other.m0)) , m1(std::forward<T1>( other.m1)) , m2(std::forward<T2>( other.m2)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) , m1(BOOST_FUSION_FWD_ELEM(T1, other.m1)) , m2(BOOST_FUSION_FWD_ELEM(T2, other.m2)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data3(
@@ -396,7 +396,7 @@ namespace boost { namespace fusion
         template <typename U0 , typename U1 , typename U2>
         BOOST_FUSION_GPU_ENABLED
         vector3(U0 && arg0 , U1 && arg1 , U2 && arg2)
-            : base_type(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2)) {}
+            : base_type(BOOST_FUSION_FWD_ELEM(U0, arg0) , BOOST_FUSION_FWD_ELEM(U1, arg1) , BOOST_FUSION_FWD_ELEM(U2, arg2)) {}
         BOOST_FUSION_GPU_ENABLED
         vector3(vector3&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
@@ -482,10 +482,10 @@ namespace boost { namespace fusion
         vector_data4(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) , m1(std::forward<U1>( arg1)) , m2(std::forward<U2>( arg2)) , m3(std::forward<U3>( arg3)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) , m1(BOOST_FUSION_FWD_ELEM(U1, arg1)) , m2(BOOST_FUSION_FWD_ELEM(U2, arg2)) , m3(BOOST_FUSION_FWD_ELEM(U3, arg3)) {}
         vector_data4(
             vector_data4&& other)
-            : m0(std::forward<T0>( other.m0)) , m1(std::forward<T1>( other.m1)) , m2(std::forward<T2>( other.m2)) , m3(std::forward<T3>( other.m3)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) , m1(BOOST_FUSION_FWD_ELEM(T1, other.m1)) , m2(BOOST_FUSION_FWD_ELEM(T2, other.m2)) , m3(BOOST_FUSION_FWD_ELEM(T3, other.m3)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data4(
@@ -547,7 +547,7 @@ namespace boost { namespace fusion
         template <typename U0 , typename U1 , typename U2 , typename U3>
         BOOST_FUSION_GPU_ENABLED
         vector4(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3)
-            : base_type(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3)) {}
+            : base_type(BOOST_FUSION_FWD_ELEM(U0, arg0) , BOOST_FUSION_FWD_ELEM(U1, arg1) , BOOST_FUSION_FWD_ELEM(U2, arg2) , BOOST_FUSION_FWD_ELEM(U3, arg3)) {}
         BOOST_FUSION_GPU_ENABLED
         vector4(vector4&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
@@ -633,10 +633,10 @@ namespace boost { namespace fusion
         vector_data5(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) , m1(std::forward<U1>( arg1)) , m2(std::forward<U2>( arg2)) , m3(std::forward<U3>( arg3)) , m4(std::forward<U4>( arg4)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) , m1(BOOST_FUSION_FWD_ELEM(U1, arg1)) , m2(BOOST_FUSION_FWD_ELEM(U2, arg2)) , m3(BOOST_FUSION_FWD_ELEM(U3, arg3)) , m4(BOOST_FUSION_FWD_ELEM(U4, arg4)) {}
         vector_data5(
             vector_data5&& other)
-            : m0(std::forward<T0>( other.m0)) , m1(std::forward<T1>( other.m1)) , m2(std::forward<T2>( other.m2)) , m3(std::forward<T3>( other.m3)) , m4(std::forward<T4>( other.m4)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) , m1(BOOST_FUSION_FWD_ELEM(T1, other.m1)) , m2(BOOST_FUSION_FWD_ELEM(T2, other.m2)) , m3(BOOST_FUSION_FWD_ELEM(T3, other.m3)) , m4(BOOST_FUSION_FWD_ELEM(T4, other.m4)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data5(
@@ -698,7 +698,7 @@ namespace boost { namespace fusion
         template <typename U0 , typename U1 , typename U2 , typename U3 , typename U4>
         BOOST_FUSION_GPU_ENABLED
         vector5(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4)
-            : base_type(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4)) {}
+            : base_type(BOOST_FUSION_FWD_ELEM(U0, arg0) , BOOST_FUSION_FWD_ELEM(U1, arg1) , BOOST_FUSION_FWD_ELEM(U2, arg2) , BOOST_FUSION_FWD_ELEM(U3, arg3) , BOOST_FUSION_FWD_ELEM(U4, arg4)) {}
         BOOST_FUSION_GPU_ENABLED
         vector5(vector5&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
@@ -784,10 +784,10 @@ namespace boost { namespace fusion
         vector_data6(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) , m1(std::forward<U1>( arg1)) , m2(std::forward<U2>( arg2)) , m3(std::forward<U3>( arg3)) , m4(std::forward<U4>( arg4)) , m5(std::forward<U5>( arg5)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) , m1(BOOST_FUSION_FWD_ELEM(U1, arg1)) , m2(BOOST_FUSION_FWD_ELEM(U2, arg2)) , m3(BOOST_FUSION_FWD_ELEM(U3, arg3)) , m4(BOOST_FUSION_FWD_ELEM(U4, arg4)) , m5(BOOST_FUSION_FWD_ELEM(U5, arg5)) {}
         vector_data6(
             vector_data6&& other)
-            : m0(std::forward<T0>( other.m0)) , m1(std::forward<T1>( other.m1)) , m2(std::forward<T2>( other.m2)) , m3(std::forward<T3>( other.m3)) , m4(std::forward<T4>( other.m4)) , m5(std::forward<T5>( other.m5)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) , m1(BOOST_FUSION_FWD_ELEM(T1, other.m1)) , m2(BOOST_FUSION_FWD_ELEM(T2, other.m2)) , m3(BOOST_FUSION_FWD_ELEM(T3, other.m3)) , m4(BOOST_FUSION_FWD_ELEM(T4, other.m4)) , m5(BOOST_FUSION_FWD_ELEM(T5, other.m5)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data6(
@@ -849,7 +849,7 @@ namespace boost { namespace fusion
         template <typename U0 , typename U1 , typename U2 , typename U3 , typename U4 , typename U5>
         BOOST_FUSION_GPU_ENABLED
         vector6(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5)
-            : base_type(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5)) {}
+            : base_type(BOOST_FUSION_FWD_ELEM(U0, arg0) , BOOST_FUSION_FWD_ELEM(U1, arg1) , BOOST_FUSION_FWD_ELEM(U2, arg2) , BOOST_FUSION_FWD_ELEM(U3, arg3) , BOOST_FUSION_FWD_ELEM(U4, arg4) , BOOST_FUSION_FWD_ELEM(U5, arg5)) {}
         BOOST_FUSION_GPU_ENABLED
         vector6(vector6&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
@@ -935,10 +935,10 @@ namespace boost { namespace fusion
         vector_data7(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) , m1(std::forward<U1>( arg1)) , m2(std::forward<U2>( arg2)) , m3(std::forward<U3>( arg3)) , m4(std::forward<U4>( arg4)) , m5(std::forward<U5>( arg5)) , m6(std::forward<U6>( arg6)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) , m1(BOOST_FUSION_FWD_ELEM(U1, arg1)) , m2(BOOST_FUSION_FWD_ELEM(U2, arg2)) , m3(BOOST_FUSION_FWD_ELEM(U3, arg3)) , m4(BOOST_FUSION_FWD_ELEM(U4, arg4)) , m5(BOOST_FUSION_FWD_ELEM(U5, arg5)) , m6(BOOST_FUSION_FWD_ELEM(U6, arg6)) {}
         vector_data7(
             vector_data7&& other)
-            : m0(std::forward<T0>( other.m0)) , m1(std::forward<T1>( other.m1)) , m2(std::forward<T2>( other.m2)) , m3(std::forward<T3>( other.m3)) , m4(std::forward<T4>( other.m4)) , m5(std::forward<T5>( other.m5)) , m6(std::forward<T6>( other.m6)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) , m1(BOOST_FUSION_FWD_ELEM(T1, other.m1)) , m2(BOOST_FUSION_FWD_ELEM(T2, other.m2)) , m3(BOOST_FUSION_FWD_ELEM(T3, other.m3)) , m4(BOOST_FUSION_FWD_ELEM(T4, other.m4)) , m5(BOOST_FUSION_FWD_ELEM(T5, other.m5)) , m6(BOOST_FUSION_FWD_ELEM(T6, other.m6)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data7(
@@ -1000,7 +1000,7 @@ namespace boost { namespace fusion
         template <typename U0 , typename U1 , typename U2 , typename U3 , typename U4 , typename U5 , typename U6>
         BOOST_FUSION_GPU_ENABLED
         vector7(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6)
-            : base_type(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5) , std::forward<U6>( arg6)) {}
+            : base_type(BOOST_FUSION_FWD_ELEM(U0, arg0) , BOOST_FUSION_FWD_ELEM(U1, arg1) , BOOST_FUSION_FWD_ELEM(U2, arg2) , BOOST_FUSION_FWD_ELEM(U3, arg3) , BOOST_FUSION_FWD_ELEM(U4, arg4) , BOOST_FUSION_FWD_ELEM(U5, arg5) , BOOST_FUSION_FWD_ELEM(U6, arg6)) {}
         BOOST_FUSION_GPU_ENABLED
         vector7(vector7&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
@@ -1086,10 +1086,10 @@ namespace boost { namespace fusion
         vector_data8(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) , m1(std::forward<U1>( arg1)) , m2(std::forward<U2>( arg2)) , m3(std::forward<U3>( arg3)) , m4(std::forward<U4>( arg4)) , m5(std::forward<U5>( arg5)) , m6(std::forward<U6>( arg6)) , m7(std::forward<U7>( arg7)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) , m1(BOOST_FUSION_FWD_ELEM(U1, arg1)) , m2(BOOST_FUSION_FWD_ELEM(U2, arg2)) , m3(BOOST_FUSION_FWD_ELEM(U3, arg3)) , m4(BOOST_FUSION_FWD_ELEM(U4, arg4)) , m5(BOOST_FUSION_FWD_ELEM(U5, arg5)) , m6(BOOST_FUSION_FWD_ELEM(U6, arg6)) , m7(BOOST_FUSION_FWD_ELEM(U7, arg7)) {}
         vector_data8(
             vector_data8&& other)
-            : m0(std::forward<T0>( other.m0)) , m1(std::forward<T1>( other.m1)) , m2(std::forward<T2>( other.m2)) , m3(std::forward<T3>( other.m3)) , m4(std::forward<T4>( other.m4)) , m5(std::forward<T5>( other.m5)) , m6(std::forward<T6>( other.m6)) , m7(std::forward<T7>( other.m7)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) , m1(BOOST_FUSION_FWD_ELEM(T1, other.m1)) , m2(BOOST_FUSION_FWD_ELEM(T2, other.m2)) , m3(BOOST_FUSION_FWD_ELEM(T3, other.m3)) , m4(BOOST_FUSION_FWD_ELEM(T4, other.m4)) , m5(BOOST_FUSION_FWD_ELEM(T5, other.m5)) , m6(BOOST_FUSION_FWD_ELEM(T6, other.m6)) , m7(BOOST_FUSION_FWD_ELEM(T7, other.m7)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data8(
@@ -1151,7 +1151,7 @@ namespace boost { namespace fusion
         template <typename U0 , typename U1 , typename U2 , typename U3 , typename U4 , typename U5 , typename U6 , typename U7>
         BOOST_FUSION_GPU_ENABLED
         vector8(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7)
-            : base_type(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5) , std::forward<U6>( arg6) , std::forward<U7>( arg7)) {}
+            : base_type(BOOST_FUSION_FWD_ELEM(U0, arg0) , BOOST_FUSION_FWD_ELEM(U1, arg1) , BOOST_FUSION_FWD_ELEM(U2, arg2) , BOOST_FUSION_FWD_ELEM(U3, arg3) , BOOST_FUSION_FWD_ELEM(U4, arg4) , BOOST_FUSION_FWD_ELEM(U5, arg5) , BOOST_FUSION_FWD_ELEM(U6, arg6) , BOOST_FUSION_FWD_ELEM(U7, arg7)) {}
         BOOST_FUSION_GPU_ENABLED
         vector8(vector8&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
@@ -1237,10 +1237,10 @@ namespace boost { namespace fusion
         vector_data9(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) , m1(std::forward<U1>( arg1)) , m2(std::forward<U2>( arg2)) , m3(std::forward<U3>( arg3)) , m4(std::forward<U4>( arg4)) , m5(std::forward<U5>( arg5)) , m6(std::forward<U6>( arg6)) , m7(std::forward<U7>( arg7)) , m8(std::forward<U8>( arg8)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) , m1(BOOST_FUSION_FWD_ELEM(U1, arg1)) , m2(BOOST_FUSION_FWD_ELEM(U2, arg2)) , m3(BOOST_FUSION_FWD_ELEM(U3, arg3)) , m4(BOOST_FUSION_FWD_ELEM(U4, arg4)) , m5(BOOST_FUSION_FWD_ELEM(U5, arg5)) , m6(BOOST_FUSION_FWD_ELEM(U6, arg6)) , m7(BOOST_FUSION_FWD_ELEM(U7, arg7)) , m8(BOOST_FUSION_FWD_ELEM(U8, arg8)) {}
         vector_data9(
             vector_data9&& other)
-            : m0(std::forward<T0>( other.m0)) , m1(std::forward<T1>( other.m1)) , m2(std::forward<T2>( other.m2)) , m3(std::forward<T3>( other.m3)) , m4(std::forward<T4>( other.m4)) , m5(std::forward<T5>( other.m5)) , m6(std::forward<T6>( other.m6)) , m7(std::forward<T7>( other.m7)) , m8(std::forward<T8>( other.m8)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) , m1(BOOST_FUSION_FWD_ELEM(T1, other.m1)) , m2(BOOST_FUSION_FWD_ELEM(T2, other.m2)) , m3(BOOST_FUSION_FWD_ELEM(T3, other.m3)) , m4(BOOST_FUSION_FWD_ELEM(T4, other.m4)) , m5(BOOST_FUSION_FWD_ELEM(T5, other.m5)) , m6(BOOST_FUSION_FWD_ELEM(T6, other.m6)) , m7(BOOST_FUSION_FWD_ELEM(T7, other.m7)) , m8(BOOST_FUSION_FWD_ELEM(T8, other.m8)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data9(
@@ -1302,7 +1302,7 @@ namespace boost { namespace fusion
         template <typename U0 , typename U1 , typename U2 , typename U3 , typename U4 , typename U5 , typename U6 , typename U7 , typename U8>
         BOOST_FUSION_GPU_ENABLED
         vector9(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8)
-            : base_type(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5) , std::forward<U6>( arg6) , std::forward<U7>( arg7) , std::forward<U8>( arg8)) {}
+            : base_type(BOOST_FUSION_FWD_ELEM(U0, arg0) , BOOST_FUSION_FWD_ELEM(U1, arg1) , BOOST_FUSION_FWD_ELEM(U2, arg2) , BOOST_FUSION_FWD_ELEM(U3, arg3) , BOOST_FUSION_FWD_ELEM(U4, arg4) , BOOST_FUSION_FWD_ELEM(U5, arg5) , BOOST_FUSION_FWD_ELEM(U6, arg6) , BOOST_FUSION_FWD_ELEM(U7, arg7) , BOOST_FUSION_FWD_ELEM(U8, arg8)) {}
         BOOST_FUSION_GPU_ENABLED
         vector9(vector9&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
@@ -1388,10 +1388,10 @@ namespace boost { namespace fusion
         vector_data10(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9
           , typename boost::enable_if<is_convertible<U0, T0> >::type* = 0
         )
-            : m0(std::forward<U0>( arg0)) , m1(std::forward<U1>( arg1)) , m2(std::forward<U2>( arg2)) , m3(std::forward<U3>( arg3)) , m4(std::forward<U4>( arg4)) , m5(std::forward<U5>( arg5)) , m6(std::forward<U6>( arg6)) , m7(std::forward<U7>( arg7)) , m8(std::forward<U8>( arg8)) , m9(std::forward<U9>( arg9)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(U0, arg0)) , m1(BOOST_FUSION_FWD_ELEM(U1, arg1)) , m2(BOOST_FUSION_FWD_ELEM(U2, arg2)) , m3(BOOST_FUSION_FWD_ELEM(U3, arg3)) , m4(BOOST_FUSION_FWD_ELEM(U4, arg4)) , m5(BOOST_FUSION_FWD_ELEM(U5, arg5)) , m6(BOOST_FUSION_FWD_ELEM(U6, arg6)) , m7(BOOST_FUSION_FWD_ELEM(U7, arg7)) , m8(BOOST_FUSION_FWD_ELEM(U8, arg8)) , m9(BOOST_FUSION_FWD_ELEM(U9, arg9)) {}
         vector_data10(
             vector_data10&& other)
-            : m0(std::forward<T0>( other.m0)) , m1(std::forward<T1>( other.m1)) , m2(std::forward<T2>( other.m2)) , m3(std::forward<T3>( other.m3)) , m4(std::forward<T4>( other.m4)) , m5(std::forward<T5>( other.m5)) , m6(std::forward<T6>( other.m6)) , m7(std::forward<T7>( other.m7)) , m8(std::forward<T8>( other.m8)) , m9(std::forward<T9>( other.m9)) {}
+            : m0(BOOST_FUSION_FWD_ELEM(T0, other.m0)) , m1(BOOST_FUSION_FWD_ELEM(T1, other.m1)) , m2(BOOST_FUSION_FWD_ELEM(T2, other.m2)) , m3(BOOST_FUSION_FWD_ELEM(T3, other.m3)) , m4(BOOST_FUSION_FWD_ELEM(T4, other.m4)) , m5(BOOST_FUSION_FWD_ELEM(T5, other.m5)) , m6(BOOST_FUSION_FWD_ELEM(T6, other.m6)) , m7(BOOST_FUSION_FWD_ELEM(T7, other.m7)) , m8(BOOST_FUSION_FWD_ELEM(T8, other.m8)) , m9(BOOST_FUSION_FWD_ELEM(T9, other.m9)) {}
 # endif
         BOOST_FUSION_GPU_ENABLED
         vector_data10(
@@ -1453,7 +1453,7 @@ namespace boost { namespace fusion
         template <typename U0 , typename U1 , typename U2 , typename U3 , typename U4 , typename U5 , typename U6 , typename U7 , typename U8 , typename U9>
         BOOST_FUSION_GPU_ENABLED
         vector10(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9)
-            : base_type(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5) , std::forward<U6>( arg6) , std::forward<U7>( arg7) , std::forward<U8>( arg8) , std::forward<U9>( arg9)) {}
+            : base_type(BOOST_FUSION_FWD_ELEM(U0, arg0) , BOOST_FUSION_FWD_ELEM(U1, arg1) , BOOST_FUSION_FWD_ELEM(U2, arg2) , BOOST_FUSION_FWD_ELEM(U3, arg3) , BOOST_FUSION_FWD_ELEM(U4, arg4) , BOOST_FUSION_FWD_ELEM(U5, arg5) , BOOST_FUSION_FWD_ELEM(U6, arg6) , BOOST_FUSION_FWD_ELEM(U7, arg7) , BOOST_FUSION_FWD_ELEM(U8, arg8) , BOOST_FUSION_FWD_ELEM(U9, arg9)) {}
         BOOST_FUSION_GPU_ENABLED
         vector10(vector10&& rhs)
             : base_type(std::forward<base_type>(rhs)) {}
