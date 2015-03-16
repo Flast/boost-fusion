@@ -11,6 +11,18 @@
 #include <boost/fusion/include/adapt_struct.hpp>
 #include <boost/fusion/sequence/hash.hpp>
 
+#ifdef BOOST_NO_CXX11_HDR_FUNCTIONAL
+#   define BOOST_CXX11_FUNCTIONAL_TEST(cond)
+#else
+#   define BOOST_CXX11_FUNCTIONAL_TEST BOOST_TEST
+template <typename Seq>
+inline typename std::hash<Seq>::result_type
+std_hash_value(Seq const &seq)
+{
+    return std::hash<Seq>()(seq);
+}
+#endif
+
 struct test_struct
 {
     test_struct(bool bb, int ii, char cc, std::string const& ss) :
@@ -55,4 +67,16 @@ int main()
     BOOST_TEST(hash_value(c) != hash_value(d));
     BOOST_TEST(hash_value(c) != hash_value(e));
     BOOST_TEST(hash_value(d) != hash_value(e));
+
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(a0) == std_hash_value(a1));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(a0) != std_hash_value(b));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(a0) != std_hash_value(c));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(a0) != std_hash_value(d));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(a0) != std_hash_value(e));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(b) != std_hash_value(c));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(b) != std_hash_value(d));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(b) != std_hash_value(d));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(c) != std_hash_value(d));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(c) != std_hash_value(e));
+    BOOST_CXX11_FUNCTIONAL_TEST(std_hash_value(d) != std_hash_value(e));
 }
