@@ -25,7 +25,7 @@ namespace boost { namespace fusion
         struct empty_impl
         {
             template <typename Sequence>
-            struct apply 
+            struct apply
                 : mpl::bool_<(result_of::size<Sequence>::value == 0)>
             {};
         };
@@ -41,10 +41,12 @@ namespace boost { namespace fusion
         struct empty_impl<mpl_sequence_tag>;
     }
 
+    BOOST_FUSION_NON_SEQUENCE_EXTENSION_IMPL1(empty_impl)
+
     namespace result_of
     {
         template <typename Sequence>
-        struct empty 
+        struct empty
             : extension::empty_impl<typename detail::tag_of<Sequence>::type>::
                 template apply<Sequence>
         {};

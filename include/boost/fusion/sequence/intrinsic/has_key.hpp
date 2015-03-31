@@ -14,6 +14,7 @@
 #include <boost/fusion/algorithm/query/find.hpp>
 #include <boost/fusion/sequence/intrinsic/end.hpp>
 #include <boost/mpl/not.hpp>
+#include <boost/mpl/bool.hpp>
 
 namespace boost { namespace fusion
 {
@@ -39,6 +40,13 @@ namespace boost { namespace fusion
                     >::type
                 >::type
             {};
+        };
+
+        template <>
+        struct has_key_impl<non_fusion_tag>
+        {
+            template <typename Seq, typename Key>
+            struct apply : mpl::false_ {};
         };
 
         template <>

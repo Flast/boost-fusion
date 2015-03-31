@@ -68,6 +68,10 @@ namespace boost { namespace fusion
                 , mpl::empty_base
               >::type
         {};
+
+        template <typename Sequence, typename N>
+        struct value_at_impl<Sequence, N, non_fusion_tag>
+        {};
     }
 
     namespace result_of

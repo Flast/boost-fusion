@@ -13,7 +13,6 @@
 #include <boost/mpl/or.hpp>
 #include <boost/mpl/less.hpp>
 #include <boost/mpl/empty_base.hpp>
-#include <boost/type_traits/is_const.hpp>
 #include <boost/fusion/sequence/intrinsic_fwd.hpp>
 #include <boost/fusion/support/tag_of.hpp>
 #include <boost/fusion/support/category_of.hpp>
@@ -73,6 +72,10 @@ namespace boost { namespace fusion
                 , mpl::empty_base
               >::type
         {};
+
+        template <typename Sequence, typename N>
+        struct at_impl<Sequence, N, non_fusion_tag>
+        {};
     }
 
     namespace result_of
@@ -91,11 +94,7 @@ namespace boost { namespace fusion
 
     template <typename N, typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename
-        lazy_disable_if<
-            is_const<Sequence>
-          , result_of::at<Sequence, N>
-        >::type
+    inline typename result_of::at<Sequence, N>::type
     at(Sequence& seq)
     {
         return result_of::at<Sequence, N>::call(seq);
@@ -111,13 +110,8 @@ namespace boost { namespace fusion
 
     template <int N, typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename
-        lazy_disable_if<
-            is_const<Sequence>
-          , result_of::at_c<Sequence, N>
-        >::type
-    at_c(Sequence& seq)
-    {
+    inline typename result_of::at_c<Sequence, N>::type
+    at_c(Sequence& seq) {
         return fusion::at<mpl::int_<N> >(seq);
     }
 

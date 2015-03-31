@@ -73,6 +73,8 @@ namespace boost { namespace fusion
         {};
     }
 
+    BOOST_FUSION_NON_SEQUENCE_EXTENSION_IMPL2(value_at_key_impl)
+
     namespace result_of
     {
         template <typename Sequence, typename N>

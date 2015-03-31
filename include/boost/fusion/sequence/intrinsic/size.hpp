@@ -63,14 +63,24 @@ namespace boost { namespace fusion
         struct size_impl<std_pair_tag>;
     }
 
+    namespace detail
+    {
+        template <typename Sequence, typename Tag>
+        struct size
+            : mpl::int_<
+                  extension::size_impl<Tag>::template apply<Sequence>::type::value
+              > {};
+
+        template <typename Sequence>
+        struct size<Sequence, non_fusion_tag> {};
+    }
+
     namespace result_of
     {
         template <typename Sequence>
         struct size
-            : mpl::int_<
-                  extension::size_impl<typename detail::tag_of<Sequence>::type>
-                      ::template apply<Sequence>::type::value
-              > {};
+          : detail::size<Sequence, typename detail::tag_of<Sequence>::type>
+        {};
     }
 
     template <typename Sequence>

@@ -8,24 +8,33 @@
 #define FUSION_BACK_09162005_0350
 
 #include <boost/fusion/support/config.hpp>
+#include <boost/fusion/support/detail/enabler.hpp>
 #include <boost/fusion/sequence/intrinsic_fwd.hpp>
 #include <boost/fusion/sequence/intrinsic/end.hpp>
 #include <boost/fusion/iterator/prior.hpp>
 #include <boost/fusion/iterator/deref.hpp>
-#include <boost/mpl/bool.hpp>
 
 namespace boost { namespace fusion
 {
-    struct fusion_sequence_tag;
+    namespace detail
+    {
+        template <typename Sequence, typename = void>
+        struct back_impl
+        {};
+
+        template <typename Sequence>
+        struct back_impl<Sequence,
+            typename detail::enabler<typename result_of::end<Sequence>::type>::type>
+            : result_of::deref<typename result_of::prior<typename result_of::end<Sequence>::type>::type>
+        {};
+    }
 
     namespace result_of
     {
         template <typename Sequence>
-        struct back
-            : result_of::deref<typename result_of::prior<typename result_of::end<Sequence>::type>::type>
-        {};
+        struct back : detail::back_impl<Sequence> {};
     }
-    
+
     template <typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     inline typename result_of::back<Sequence>::type
