@@ -20,6 +20,8 @@
 #include <boost/type_traits/is_same.hpp>
 #include <string>
 
+#include "../compile_time/sfinae_friendly.hpp"
+
 struct k1 {};
 struct k2 {};
 struct k3 {};
@@ -102,18 +104,27 @@ test()
 
     {   // testing const sequences
 
-        const map<pair<k1, int>, pair<k2, float> > t1(5, 3.3f);
+        typedef map<pair<k1, int>, pair<k2, float> > Seq;
+        const Seq t1(5, 3.3f);
         BOOST_TEST(at_c<0>(t1).second == 5);
         BOOST_TEST(at_c<1>(t1).second == 3.3f);
+
+        SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::at_c<Seq, 2>));
     }
 
     {   // testing at<N> works with MPL integral constants
-        const map<pair<k1, int>, pair<k2, char> > t1(101, 'z');
+        typedef map<pair<k1, int>, pair<k2, char> > Seq;
+        const Seq t1(101, 'z');
         BOOST_TEST(boost::fusion::at<boost::mpl::int_<0> >(t1).second == 101);
         BOOST_TEST(boost::fusion::at<boost::mpl::int_<1> >(t1).second == 'z');
+
+        SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::at<Seq, boost::mpl::int_<2> >));
+
         // explicitly try something other than mpl::int_
         BOOST_TEST((boost::fusion::at<boost::mpl::integral_c<long, 0> >(t1).second == 101));
         BOOST_TEST((boost::fusion::at<boost::mpl::integral_c<long, 1> >(t1).second == 'z'));
+
+        SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::at<Seq, boost::mpl::integral_c<long, 2> >));
     }
 
     {   // testing size & empty
@@ -134,6 +145,9 @@ test()
 
         BOOST_TEST(front(t).second == 1);
         BOOST_TEST(back(t).second == "Kimpo");
+        // FIXME
+        //SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::front<map<> >));
+        //SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::back<map<> >));
     }
 
     {   // testing is_sequence

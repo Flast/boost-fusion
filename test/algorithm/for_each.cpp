@@ -11,6 +11,8 @@
 #include <boost/fusion/algorithm/iteration/for_each.hpp>
 #include <boost/mpl/vector_c.hpp>
 
+#include "../compile_time/sfinae_friendly.hpp"
+
 struct print
 {
     template <typename T>
