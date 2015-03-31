@@ -28,6 +28,7 @@ project
     [ run algorithm/find.cpp :  :  :  : ]
     [ run algorithm/find_if.cpp :  :  :  : ]
     [ run algorithm/fold.cpp :  :  :  : ]
+    [ run algorithm/fold2.cpp :  :  :  : ]
     [ run algorithm/for_each.cpp :  :  :  : ]
     [ run algorithm/insert.cpp :  :  :  : ]
     [ run algorithm/insert_range.cpp :  :  :  : ]
@@ -55,6 +56,11 @@ project
     [ run algorithm/zip2.cpp : : : : ]
     [ run algorithm/zip_ignore.cpp : : : : ]
     [ run algorithm/flatten.cpp : : : : ]
+
+    [ compile algorithm/auxiliary.cpp : : : : ]
+    [ compile algorithm/iteration.cpp : : : : ]
+    [ compile algorithm/query.cpp : : : : ]
+    [ compile algorithm/transformation.cpp : : : : ]
 
     [ run sequence/as_deque.cpp :  :  :  : ]
     [ run sequence/as_list.cpp :  :  :  : ]
@@ -165,8 +171,11 @@ project
     [ run sequence/std_tuple_iterator.cpp : : : : ]
     [ run sequence/ref_vector.cpp : : : : ]
     [ run sequence/flatten_view.cpp : : : : ]
+    [ run sequence/swap.cpp :  :  :  : ]
 
     [ compile sequence/size.cpp : : : : ]
+    [ compile sequence/intrinsic.cpp : : : : ]
+    [ compile sequence/iterator_metafun.cpp : : : : ]
 
     [ run functional/fused.cpp : : : : ]
     [ run functional/fused_function_object.cpp : : : : ]
@@ -180,7 +189,6 @@ project
     [ run functional/invoke.cpp : : : : ]
     [ run functional/invoke_function_object.cpp : : : : ]
     [ run functional/invoke_procedure.cpp : : : : ]
-    [ run sequence/swap.cpp :  :  :  : ]
 
     [ compile support/pair_deque.cpp : : : : ]
     [ compile support/pair_list.cpp : : : : ]

@@ -18,6 +18,8 @@
 #include <boost/mpl/assert.hpp>
 #include <boost/mpl/empty_base.hpp>
 
+#include "../compile_time/sfinae_friendly.hpp"
+
 namespace fusion = boost::fusion;
 using boost::noncopyable;
 
@@ -51,6 +53,25 @@ struct test_func
         return 4+x-y;
     }
 };
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<> >(sfinae_friendly::v0)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<> >(sfinae_friendly::v1)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<> >(sfinae_friendly::v3)>));
+
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<noncopyable> & >(sfinae_friendly::v0)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<noncopyable> & >(sfinae_friendly::v1)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<noncopyable> & >(sfinae_friendly::v3)>));
+
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<> const >(sfinae_friendly::v0)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<> const >(sfinae_friendly::v1)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<> const >(sfinae_friendly::v3)>));
+
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<> > const (sfinae_friendly::v0)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<> > const (sfinae_friendly::v1)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<> > const (sfinae_friendly::v3)>));
+
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<noncopyable> const & >(sfinae_friendly::v0)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<noncopyable> const & >(sfinae_friendly::v1)>));
+SFINAE_FRIENDLY_ASSERT((boost::result_of<fusion::fused<test_func<noncopyable> const & >(sfinae_friendly::v3)>));
 
 int main()
 {

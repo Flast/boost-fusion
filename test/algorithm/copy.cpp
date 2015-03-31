@@ -10,6 +10,15 @@
 #include <boost/fusion/sequence/comparison.hpp>
 #include <boost/fusion/algorithm/auxiliary/copy.hpp>
 
+#include "../compile_time/sfinae_friendly.hpp"
+
+// FIXME:
+//SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::copy<sfinae_friendly::v0, sfinae_friendly::v1>));
+//SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::copy<sfinae_friendly::v1, sfinae_friendly::v2>));
+//SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::copy<sfinae_friendly::v2, sfinae_friendly::v3>));
+SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::copy<int, sfinae_friendly::v1>));
+SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::copy<sfinae_friendly::v1, int>));
+SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::copy<int, int>));
 int
 main()
 {

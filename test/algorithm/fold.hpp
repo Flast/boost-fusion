@@ -35,6 +35,8 @@
 #include <boost/type_traits/remove_reference.hpp>
 #include <iostream>
 
+#include "../compile_time/sfinae_friendly.hpp"
+
 namespace mpl=boost::mpl;
 namespace fusion=boost::fusion;
 
@@ -196,6 +198,11 @@ struct fold_test_n
             result_test;
 
             BOOST_MPL_ASSERT((result_test));
+
+            // FIXME
+            //SFINAE_FRIENDLY_ASSERT((fusion::result_of::BOOST_FUSION_TEST_FOLD_NAME<int                , mpl::vector<mpl::int_<1>, mpl::int_<0> >, meta_sum>));
+            //SFINAE_FRIENDLY_ASSERT((fusion::result_of::BOOST_FUSION_TEST_FOLD_NAME<sfinae_friendly::v0, int                                     , meta_sum>));
+            //SFINAE_FRIENDLY_ASSERT((fusion::result_of::BOOST_FUSION_TEST_FOLD_NAME<sfinae_friendly::v0, mpl::vector<mpl::int_<1>, mpl::int_<0> >, int     >));
         }
     }
 };

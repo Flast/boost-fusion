@@ -17,8 +17,11 @@
 #include <boost/type_traits/is_same.hpp>
 #include <string>
 
+#include "../compile_time/sfinae_friendly.hpp"
+
 #if !defined(FUSION_AT)
 #define FUSION_AT at_c
+#define FUSION_AT_USING_FUSION
 #endif
 
 #if !defined(FUSION_SIZE)
@@ -127,18 +130,29 @@ test()
 
     {   // testing const sequences
 
-        const FUSION_SEQUENCE<int, float> t1(5, 3.3f);
+        typedef FUSION_SEQUENCE<int, float> Seq;
+        const Seq t1(5, 3.3f);
         BOOST_TEST(FUSION_AT<0>(t1) == 5);
         BOOST_TEST(FUSION_AT<1>(t1) == 3.3f);
+
+#ifdef FUSION_AT_USING_FUSION
+        SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::at_c<Seq, 2>));
+#endif
     }
 
     {   // testing at<N> works with MPL integral constants
-        const FUSION_SEQUENCE<int, char> t1(101, 'z');
+        typedef FUSION_SEQUENCE<int, char> Seq;
+        const Seq t1(101, 'z');
         BOOST_TEST(boost::fusion::at<boost::mpl::int_<0> >(t1) == 101);
         BOOST_TEST(boost::fusion::at<boost::mpl::int_<1> >(t1) == 'z');
+
+        SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::at<Seq, boost::mpl::int_<2> >));
+
         // explicitly try something other than mpl::int_
         BOOST_TEST((boost::fusion::at<boost::mpl::integral_c<long, 0> >(t1) == 101));
         BOOST_TEST((boost::fusion::at<boost::mpl::integral_c<long, 1> >(t1) == 'z'));
+
+        SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::at<Seq, boost::mpl::integral_c<long, 2> >));
     }
 
     {   // testing size & empty
@@ -158,6 +172,7 @@ test()
         tup t(1, 2.2f, "Kimpo");
 
         BOOST_TEST(front(t) == 1);
+
 #if !defined(FUSION_FORWARD_ONLY) // list has no back
         BOOST_TEST(back(t) == "Kimpo");
 #endif
