@@ -9,12 +9,10 @@
 #define BOOST_FUSION_AT_KEY_20060304_1755
 
 #include <boost/fusion/support/config.hpp>
-#include <boost/type_traits/is_const.hpp>
 #include <boost/fusion/sequence/intrinsic_fwd.hpp>
 #include <boost/fusion/algorithm/query/find.hpp>
 #include <boost/fusion/iterator/deref_data.hpp>
 #include <boost/fusion/support/tag_of.hpp>
-#include <boost/fusion/support/detail/access.hpp>
 
 namespace boost { namespace fusion
 {
@@ -64,6 +62,8 @@ namespace boost { namespace fusion
         struct at_key_impl<std_pair_tag>;
     }
 
+    BOOST_FUSION_NON_SEQUENCE_EXTENSION_IMPL2(at_key_impl)
+
     namespace result_of
     {
         template <typename Sequence, typename Key>
@@ -75,11 +75,7 @@ namespace boost { namespace fusion
 
     template <typename Key, typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename 
-        lazy_disable_if<
-            is_const<Sequence>
-          , result_of::at_key<Sequence, Key>
-        >::type
+    inline typename result_of::at_key<Sequence, Key>::type
     at_key(Sequence& seq)
     {
         return result_of::at_key<Sequence, Key>::call(seq);

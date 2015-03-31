@@ -8,9 +8,6 @@
 #define BOOST_FUSION_SEQUENCE_INTRINSIC_FWD_HPP_INCLUDED
 
 #include <boost/fusion/support/config.hpp>
-#include <boost/type_traits/is_const.hpp>
-#include <boost/utility/enable_if.hpp>
-#include <boost/fusion/support/is_sequence.hpp>
 
 namespace boost { namespace fusion
 {
@@ -94,11 +91,7 @@ namespace boost { namespace fusion
 
     template <typename N, typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    typename 
-        lazy_disable_if<
-            is_const<Sequence>
-          , result_of::at<Sequence, N>
-        >::type
+    typename result_of::at<Sequence, N>::type
     at(Sequence& seq);
 
     template <typename N, typename Sequence>
@@ -108,11 +101,7 @@ namespace boost { namespace fusion
 
     template <int N, typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    typename 
-        lazy_disable_if<
-            is_const<Sequence>
-          , result_of::at_c<Sequence, N>
-        >::type
+    typename result_of::at_c<Sequence, N>::type
     at_c(Sequence& seq);
 
     template <int N, typename Sequence>
@@ -132,20 +121,12 @@ namespace boost { namespace fusion
 
     template <typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    typename
-        lazy_enable_if<
-            traits::is_sequence<Sequence>
-          , result_of::begin<Sequence>
-        >::type const
+    typename result_of::begin<Sequence>::type const
     begin(Sequence& seq);
 
     template <typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    typename
-        lazy_enable_if<
-            traits::is_sequence<Sequence>
-          , result_of::begin<Sequence const>
-        >::type const
+    typename result_of::begin<Sequence const>::type const
     begin(Sequence const& seq);
 
     template <typename Sequence>
@@ -155,20 +136,12 @@ namespace boost { namespace fusion
 
     template <typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    typename
-        lazy_enable_if<
-            traits::is_sequence<Sequence>
-          , result_of::end<Sequence>
-        >::type const
+    typename result_of::end<Sequence>::type const
     end(Sequence& seq);
 
     template <typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    typename
-        lazy_enable_if<
-            traits::is_sequence<Sequence>
-          , result_of::end<Sequence const>
-        >::type const
+    typename result_of::end<Sequence const>::type const
     end(Sequence const& seq);
 
     template <typename Sequence>
@@ -188,11 +161,7 @@ namespace boost { namespace fusion
 
     template <typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    typename
-        lazy_disable_if<
-            is_const<Sequence>
-          , result_of::segments<Sequence>
-        >::type
+    typename result_of::segments<Sequence>::type
     segments(Sequence& seq);
 
     template <typename Sequence>
@@ -207,11 +176,7 @@ namespace boost { namespace fusion
 
     template <typename Key, typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    typename 
-        lazy_disable_if<
-            is_const<Sequence>
-          , result_of::at_key<Sequence, Key>
-        >::type
+    typename result_of::at_key<Sequence, Key>::type
     at_key(Sequence& seq);
 
     template <typename Key, typename Sequence>

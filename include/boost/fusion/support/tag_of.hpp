@@ -80,4 +80,19 @@ namespace boost { namespace fusion
         {};
     }
 }}
+
+#define BOOST_FUSION_NON_SEQUENCE_EXTENSION_IMPL1(ext)                          \
+    namespace extension {                                                       \
+        template <>                                                             \
+        struct ext<non_fusion_tag>                                              \
+        { template <typename> struct apply {}; };                               \
+    }
+#define BOOST_FUSION_NON_SEQUENCE_EXTENSION_IMPL2(ext)                          \
+    namespace extension {                                                       \
+        template <>                                                             \
+        struct ext<non_fusion_tag>                                              \
+        { template <typename,typename> struct apply {}; };                      \
+    }
+
+
 #endif

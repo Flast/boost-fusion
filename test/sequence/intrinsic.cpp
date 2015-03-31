@@ -21,52 +21,41 @@ SFINAE_FRIENDLY_ASSERT((fusion::result_of::begin<int>));
 SFINAE_FRIENDLY_ASSERT((fusion::result_of::end<int>));
 
 // empty
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::empty<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::empty<int>));
 
 // front
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::front<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::front<int>));
 
 // back
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::back<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::back<int>));
 
 // size
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::size<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::size<int>));
 
 // at
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::at<int, int                      >));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::at<int, mpl::int_<0>             >));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::at<int, mpl::integral_c<long, 0> >));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::at<int, int                      >));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::at<int, mpl::int_<0>             >));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::at<int, mpl::integral_c<long, 0> >));
 
 // at_c
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::at_c<int, 0>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::at_c<int, 0>));
 
 // value_at
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at<int, int                      >));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at<int, mpl::int_<0>             >));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at<int, mpl::integral_c<long, 0> >));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at<int, int                      >));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at<int, mpl::int_<0>             >));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at<int, mpl::integral_c<long, 0> >));
 
 // value_at_c
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at_c<int, 0>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at_c<int, 0>));
 
 // has_key
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::has_key<int, int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::has_key<int, int>));
 
 // at_key
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::at_key<int, int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::at_key<int, int>));
 
 // value_at_key
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at_key<int, int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_at_key<int, int>));
 
 // swap
 SFINAE_FRIENDLY_ASSERT((fusion::result_of::swap<fusion::vector0<>, int               >));

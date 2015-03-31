@@ -57,11 +57,13 @@ namespace boost { namespace fusion
         template <>
         struct has_key_impl<std_pair_tag>;
     }
-    
+
+    BOOST_FUSION_NON_SEQUENCE_EXTENSION_IMPL2(has_key_impl)
+
     namespace result_of
     {
         template <typename Sequence, typename Key>
-        struct has_key 
+        struct has_key
             : extension::has_key_impl<typename detail::tag_of<Sequence>::type>::
                 template apply<Sequence, Key>
         {};

@@ -34,7 +34,7 @@ namespace boost { namespace fusion
         {
             template <typename Sequence>
             struct apply : Sequence::template segments<Sequence> {};
-        }; 
+        };
 
         template <>
         struct segments_impl<iterator_range_tag>;
@@ -55,11 +55,7 @@ namespace boost { namespace fusion
 
     template <typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename
-        lazy_disable_if<
-            is_const<Sequence>
-          , result_of::segments<Sequence>
-        >::type
+    inline typename result_of::segments<Sequence>::type
     segments(Sequence& seq)
     {
         typedef typename traits::tag_of<Sequence>::type tag_type;

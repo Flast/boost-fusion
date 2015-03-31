@@ -8,12 +8,10 @@
 #define FUSION_END_04052005_1141
 
 #include <boost/fusion/support/config.hpp>
-#include <boost/utility/enable_if.hpp>
 #include <boost/mpl/empty_base.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/fusion/sequence/intrinsic_fwd.hpp>
 #include <boost/fusion/support/tag_of.hpp>
-#include <boost/fusion/support/is_sequence.hpp>
 #include <boost/fusion/support/is_segmented.hpp>
 #include <boost/fusion/sequence/intrinsic/detail/segmented_end.hpp>
 
@@ -61,6 +59,8 @@ namespace boost { namespace fusion
         struct end_impl<std_pair_tag>;
     }
 
+    BOOST_FUSION_NON_SEQUENCE_EXTENSION_IMPL1(end_impl)
+
     namespace result_of
     {
         template <typename Sequence>
@@ -72,11 +72,7 @@ namespace boost { namespace fusion
 
     template <typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename
-        lazy_enable_if<
-            traits::is_sequence<Sequence>
-          , result_of::end<Sequence>
-        >::type const
+    inline typename result_of::end<Sequence>::type const
     end(Sequence& seq)
     {
         return result_of::end<Sequence>::call(seq);
@@ -84,11 +80,7 @@ namespace boost { namespace fusion
 
     template <typename Sequence>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename
-        lazy_enable_if<
-            traits::is_sequence<Sequence>
-          , result_of::end<Sequence const>
-        >::type const
+    inline typename result_of::end<Sequence const>::type const
     end(Sequence const& seq)
     {
         return result_of::end<Sequence const>::call(seq);
