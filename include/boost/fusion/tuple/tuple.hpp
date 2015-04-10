@@ -15,6 +15,7 @@
 #include <boost/fusion/sequence/intrinsic/at.hpp>
 #include <boost/fusion/sequence/comparison.hpp>
 #include <boost/fusion/sequence/io.hpp>
+#include <boost/fusion/sequence/detail/hash.hpp>
 #include <boost/utility/enable_if.hpp>
 #include <boost/type_traits/is_const.hpp>
 #include <boost/config/no_tr1/utility.hpp>
@@ -37,6 +38,7 @@
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 #pragma wave option(preserve: 1)
+#define FUSION_HASH #
 #endif
 
 namespace boost { namespace fusion
@@ -113,6 +115,18 @@ namespace boost { namespace fusion
 }}
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION)
+#endif
+#if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION) || \
+    (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
+BOOST_FUSION_STD_HASH_SPECIALIZATION_N(::boost::fusion::tuple, FUSION_MAX_VECTOR_SIZE)
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH endif
+#endif
+
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+#undef FUSION_HASH
 #pragma wave option(output: null)
 #endif
 
