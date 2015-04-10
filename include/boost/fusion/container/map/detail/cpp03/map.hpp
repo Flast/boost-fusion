@@ -22,6 +22,7 @@
 #include <boost/fusion/container/map/detail/cpp03/key_of_impl.hpp>
 #include <boost/fusion/container/map/detail/cpp03/value_of_data_impl.hpp>
 #include <boost/fusion/container/vector/vector.hpp>
+#include <boost/fusion/sequence/detail/hash.hpp>
 #include <boost/mpl/identity.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/preprocessor/iterate.hpp>
@@ -144,6 +145,17 @@ FUSION_HASH endif
         storage_type data;
     };
 }}
+
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION)
+#endif
+#if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION) || \
+    (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
+BOOST_FUSION_STD_HASH_SPECIALIZATION_N(::boost::fusion::map, FUSION_MAX_MAP_SIZE)
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH endif
+#endif
 
 #undef FUSION_HASH
 

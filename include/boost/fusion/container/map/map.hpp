@@ -32,6 +32,7 @@
 #include <boost/fusion/sequence/intrinsic/end.hpp>
 #include <boost/fusion/sequence/intrinsic/at.hpp>
 #include <boost/fusion/sequence/intrinsic/at_c.hpp>
+#include <boost/fusion/sequence/detail/hash.hpp>
 #include <boost/fusion/support/is_sequence.hpp>
 #include <boost/fusion/support/sequence_base.hpp>
 #include <boost/fusion/support/category_of.hpp>
@@ -127,6 +128,8 @@ namespace boost { namespace fusion
         base_type const& base() const BOOST_NOEXCEPT { return *this; }
     };
 }}
+
+BOOST_FUSION_STD_HASH_SPECIALIZATION_V(::boost::fusion::map)
 
 #endif
 #endif

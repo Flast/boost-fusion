@@ -21,6 +21,7 @@
 #include <boost/fusion/container/set/detail/key_of_impl.hpp>
 #include <boost/fusion/container/set/detail/value_of_data_impl.hpp>
 #include <boost/fusion/container/vector/vector.hpp>
+#include <boost/fusion/sequence/detail/hash.hpp>
 #include <boost/mpl/identity.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/core/enable_if.hpp>
@@ -43,6 +44,7 @@
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 #pragma wave option(preserve: 1)
+#define FUSION_HASH #
 #endif
 
 namespace boost { namespace fusion
@@ -98,6 +100,18 @@ namespace boost { namespace fusion
 }}
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION)
+#endif
+#if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION) || \
+    (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
+BOOST_FUSION_STD_HASH_SPECIALIZATION_N(::boost::fusion::set, FUSION_MAX_SET_SIZE)
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH endif
+#endif
+
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+#undef FUSION_HASH
 #pragma wave option(output: null)
 #endif
 
