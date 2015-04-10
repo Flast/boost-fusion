@@ -16,6 +16,7 @@
 #include <boost/fusion/iterator/next.hpp>
 #include <boost/fusion/iterator/deref.hpp>
 #include <boost/fusion/sequence/intrinsic/begin.hpp>
+#include <boost/fusion/sequence/detail/hash.hpp>
 #include <boost/fusion/container/vector/detail/at_impl.hpp>
 #include <boost/fusion/container/vector/detail/value_at_impl.hpp>
 #include <boost/fusion/container/vector/detail/begin_impl.hpp>
@@ -30,6 +31,7 @@
 #include <boost/utility/enable_if.hpp>
 
 #include <boost/preprocessor/dec.hpp>
+#include <boost/preprocessor/arithmetic/add.hpp>
 #include <boost/preprocessor/iteration/iterate.hpp>
 #include <boost/preprocessor/repetition/enum.hpp>
 #include <boost/preprocessor/repetition/enum_shifted.hpp>
@@ -55,6 +57,7 @@
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 #pragma wave option(preserve: 1)
+#define FUSION_HASH #
 #endif
 
 namespace boost { namespace fusion
@@ -63,15 +66,28 @@ namespace boost { namespace fusion
     struct fusion_sequence_tag;
     struct random_access_traversal_tag;
 
-#define FUSION_HASH #
 // expand vector11 to vector20
 #define BOOST_PP_FILENAME_1 <boost/fusion/container/vector/detail/vector_n.hpp>
 #define BOOST_PP_ITERATION_LIMITS (11, 20)
 #include BOOST_PP_ITERATE()
-#undef FUSION_HASH
 }}
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION)
+#endif
+#if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION) || \
+    (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
+#define FUSION_VECTOR_STD_HASH(z, N, _) \
+    BOOST_FUSION_STD_HASH_SPECIALIZATION_N(BOOST_PP_CAT(::boost::fusion::vector, N), N)
+BOOST_PP_REPEAT_FROM_TO(11, 21, FUSION_VECTOR_STD_HASH, _)
+#undef FUSION_VECTOR_STD_HASH
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH endif
+#endif
+
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+#undef FUSION_HASH
 #pragma wave option(output: null)
 #endif
 

@@ -33,6 +33,7 @@
 #include <boost/fusion/container/deque/detail/is_sequence_impl.hpp>
 #include <boost/fusion/sequence/intrinsic/begin.hpp>
 #include <boost/fusion/sequence/intrinsic/empty.hpp>
+#include <boost/fusion/sequence/detail/hash.hpp>
 
 #include <boost/mpl/int.hpp>
 #include <boost/mpl/and.hpp>
@@ -181,6 +182,8 @@ namespace boost { namespace fusion
 
     };
 }}
+
+BOOST_FUSION_STD_HASH_SPECIALIZATION_V(::boost::fusion::deque)
 
 #endif
 #endif

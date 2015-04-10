@@ -32,6 +32,7 @@
 #include <boost/fusion/container/deque/detail/end_impl.hpp>
 #include <boost/fusion/container/deque/detail/is_sequence_impl.hpp>
 #include <boost/fusion/sequence/intrinsic/begin.hpp>
+#include <boost/fusion/sequence/detail/hash.hpp>
 #include <boost/mpl/bool.hpp>
 
 #include <boost/fusion/support/void.hpp>
@@ -55,9 +56,8 @@
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 #pragma wave option(preserve: 1)
-#endif
-
 #define FUSION_HASH #
+#endif
 
 namespace boost { namespace fusion {
 
@@ -187,9 +187,19 @@ FUSION_HASH endif
 
 }}
 
-#undef FUSION_HASH
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION)
+#endif
+#if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION) || \
+    (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
+BOOST_FUSION_STD_HASH_SPECIALIZATION_N(::boost::fusion::deque, FUSION_MAX_DEQUE_SIZE)
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH endif
+#endif
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+#undef FUSION_HASH
 #pragma wave option(output: null)
 #endif
 

@@ -15,6 +15,7 @@
 #include <boost/fusion/container/vector/vector_fwd.hpp>
 #include <boost/fusion/container/vector/detail/vector_n_chooser.hpp>
 #include <boost/fusion/sequence/intrinsic/begin.hpp>
+#include <boost/fusion/sequence/detail/hash.hpp>
 #include <boost/mpl/at.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/type_traits/add_reference.hpp>
@@ -246,6 +247,17 @@ FUSION_HASH endif
         vector_n vec;
     };
 }}
+
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION)
+#endif
+#if !defined(BOOST_FUSION_NO_STD_HASH_SPECIALIZATION) || \
+    (defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES))
+BOOST_FUSION_STD_HASH_SPECIALIZATION_N(::boost::fusion::vector, FUSION_MAX_VECTOR_SIZE)
+#endif
+#if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
+FUSION_HASH endif
+#endif
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
 #pragma wave option(output: null)
