@@ -10,12 +10,8 @@
 #include <boost/fusion/support/config.hpp>
 #include <boost/fusion/iterator/detail/distance.hpp>
 #include <boost/fusion/support/category_of.hpp>
-
-#include <boost/mpl/int.hpp>
-#include <boost/mpl/assert.hpp>
-#include <boost/type_traits/is_same.hpp>
-
 #include <boost/fusion/support/tag_of.hpp>
+#include <boost/mpl/int.hpp>
 
 namespace boost { namespace fusion
 {
@@ -55,19 +51,39 @@ namespace boost { namespace fusion
         struct distance_impl<std_pair_iterator_tag>;
     }
 
+    namespace detail
+    {
+        template <typename First, typename Last, typename Ftag, typename Ltag>
+        struct distance_impl
+        {
+        };
+
+        template <typename First, typename Last>
+        struct distance_impl<First, Last, non_fusion_tag, non_fusion_tag>
+        {
+        };
+
+        template <typename First, typename Last, typename Tag>
+        struct distance_impl<First, Last, Tag, Tag>
+            : mpl::int_<
+                  extension::distance_impl<Tag>::template apply<First, Last>::value
+              >
+        {
+        };
+    }
+
     namespace result_of
     {
         template <typename First, typename Last>
         struct distance
-          : extension::distance_impl<typename detail::tag_of<First>::type>::
-                template apply<First, Last>
+          : detail::distance_impl<First, Last,
+                typename detail::tag_of<First>::type,
+                typename detail::tag_of<Last>::type
+            >
         {
-            typedef typename extension::distance_impl<typename detail::tag_of<First>::type>:: 
-            template apply<First, Last>::type distance_application;
-            BOOST_STATIC_CONSTANT(int, value = distance_application::value);
         };
     }
-        
+
     template <typename First, typename Last>
     BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     inline typename result_of::distance<First, Last>::type

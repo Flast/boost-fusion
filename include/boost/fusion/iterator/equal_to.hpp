@@ -11,9 +11,7 @@
 #include <boost/type_traits/is_same.hpp>
 #include <boost/fusion/support/tag_of.hpp>
 #include <boost/type_traits/add_const.hpp>
-#include <boost/fusion/support/is_iterator.hpp>
 #include <boost/mpl/and.hpp>
-#include <boost/utility/enable_if.hpp>
 
 namespace boost { namespace fusion
 {
@@ -62,12 +60,30 @@ namespace boost { namespace fusion
         struct equal_to_impl<std_pair_iterator_tag>;
     }
 
+    namespace detail
+    {
+        template <typename I1, typename I2, typename Ftag, typename Ltag>
+        struct equal_to_impl
+        {};
+
+        template <typename I1, typename I2>
+        struct equal_to_impl<I1, I2, non_fusion_tag, non_fusion_tag>
+        {};
+
+        template <typename I1, typename I2, typename Tag>
+        struct equal_to_impl<I1, I2, Tag, Tag>
+            : extension::equal_to_impl<Tag>::template apply<I1, I2>
+        {};
+    }
+
     namespace result_of
     {
         template <typename I1, typename I2>
         struct equal_to
-            : extension::equal_to_impl<typename detail::tag_of<I1>::type>::
-                template apply<I1, I2>
+            : detail::equal_to_impl<I1, I2,
+                  typename detail::tag_of<I1>::type,
+                  typename detail::tag_of<I2>::type
+              >
         {};
     }
 
@@ -75,11 +91,7 @@ namespace boost { namespace fusion
     {
         template <typename Iter1, typename Iter2>
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        inline typename
-        boost::enable_if<
-            mpl::and_<is_fusion_iterator<Iter1>, is_fusion_iterator<Iter2> >
-            , bool
-            >::type
+        inline typename result_of::equal_to<Iter1, Iter2>::type
         operator==(Iter1 const&, Iter2 const&)
         {
             return result_of::equal_to<Iter1, Iter2>::value;
@@ -87,11 +99,7 @@ namespace boost { namespace fusion
 
         template <typename Iter1, typename Iter2>
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        inline typename
-        boost::enable_if<
-            mpl::and_<is_fusion_iterator<Iter1>, is_fusion_iterator<Iter2> >
-            , bool
-            >::type
+        inline typename result_of::equal_to<Iter1, Iter2>::type
         operator!=(Iter1 const&, Iter2 const&)
         {
             return !result_of::equal_to<Iter1, Iter2>::value;

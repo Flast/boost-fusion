@@ -30,16 +30,14 @@ SFINAE_FRIENDLY_ASSERT((fusion::result_of::next<int>));
 SFINAE_FRIENDLY_ASSERT((fusion::result_of::prior<int>));
 
 // equal_to
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::equal_to<end, int>));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::equal_to<int, end>));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::equal_to<int, int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::equal_to<end, int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::equal_to<int, end>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::equal_to<int, int>));
 
 // distance
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::distance<end, int>));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::distance<int, end>));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::distance<int, int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::distance<end, int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::distance<int, end>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::distance<int, int>));
 
 // advance
 SFINAE_FRIENDLY_ASSERT((fusion::result_of::advance<int, int                      >));
