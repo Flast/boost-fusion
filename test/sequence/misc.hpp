@@ -172,13 +172,9 @@ test()
         tup t(1, 2.2f, "Kimpo");
 
         BOOST_TEST(front(t) == 1);
-        // FIXME
-        //SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::front<FUSION_SEQUENCE<> >));
 
 #if !defined(FUSION_FORWARD_ONLY) // list has no back
         BOOST_TEST(back(t) == "Kimpo");
-        // FIXME
-        //SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::back<FUSION_SEQUENCE<> >));
 #endif
     }
 

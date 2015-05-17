@@ -18,7 +18,11 @@ namespace boost { namespace fusion
     namespace extension
     {
         template <typename>
-        struct key_of_impl;
+        struct key_of_impl
+        {
+            template <typename It>
+            struct apply {};
+        };
 
         template <>
         struct key_of_impl<iterator_facade_tag>

@@ -145,9 +145,6 @@ test()
 
         BOOST_TEST(front(t).second == 1);
         BOOST_TEST(back(t).second == "Kimpo");
-        // FIXME
-        //SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::front<map<> >));
-        //SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::back<map<> >));
     }
 
     {   // testing is_sequence

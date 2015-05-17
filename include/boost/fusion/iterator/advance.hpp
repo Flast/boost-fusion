@@ -45,6 +45,13 @@ namespace boost { namespace fusion
         };
 
         template <>
+        struct advance_impl<non_fusion_tag>
+        {
+            template <typename Iterator, typename N>
+            struct apply {};
+        };
+
+        template <>
         struct advance_impl<iterator_facade_tag>
         {
             template <typename Iterator, typename N>

@@ -13,24 +13,21 @@
 #include "../compile_time/sfinae_friendly.hpp"
 
 namespace fusion = boost::fusion;
+namespace mpl = boost::mpl;
 
 typedef fusion::result_of::end<sfinae_friendly::v0>::type end;
 
 // value_of
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_of<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_of<int>));
 
 // deref
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::deref<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::deref<int>));
 
 // next
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::next<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::next<int>));
 
 // prior
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::prior<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::prior<int>));
 
 // equal_to
 // FIXME
@@ -45,23 +42,18 @@ typedef fusion::result_of::end<sfinae_friendly::v0>::type end;
 //SFINAE_FRIENDLY_ASSERT((fusion::result_of::distance<int, int>));
 
 // advance
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::advance<int, int                      >));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::advance<int, mpl::int_<0>             >));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::advance<int, mpl::integral_c<long, 0> >));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::advance<int, int                      >));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::advance<int, mpl::int_<0>             >));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::advance<int, mpl::integral_c<long, 0> >));
 
 // advance_c
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::advance_c<int, 0>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::advance_c<int, 0>));
 
 // key_of
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::key_of<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::key_of<int>));
 
 // value_of_data
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_of_data<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::value_of_data<int>));
 
 // deref_data
-// FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::deref_data<int>));
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::deref_data<int>));
