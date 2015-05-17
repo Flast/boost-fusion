@@ -18,7 +18,11 @@ namespace boost { namespace fusion
     namespace extension
     {
         template <typename>
-        struct deref_data_impl;
+        struct deref_data_impl
+        {
+            template <typename It>
+            struct apply {};
+        };
 
         template <>
         struct deref_data_impl<iterator_facade_tag>
