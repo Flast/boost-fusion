@@ -407,12 +407,16 @@ namespace boost { namespace fusion
     {
         template<typename Seq, typename State, typename F>
         struct BOOST_FUSION_FOLD_NAME
-          : detail::BOOST_PP_CAT(result_of_, BOOST_FUSION_FOLD_NAME)<
-                Seq
-              , State
-              , F
-              , traits::is_segmented<Seq>::type::value
-            >
+          : mpl::if_<
+                traits::is_sequence<Seq>
+              , detail::BOOST_PP_CAT(result_of_, BOOST_FUSION_FOLD_NAME)<
+                    Seq
+                  , State
+                  , F
+                  , traits::is_segmented<Seq>::type::value
+                >
+              , mpl::empty_base
+            >::type
         {};
     }
 

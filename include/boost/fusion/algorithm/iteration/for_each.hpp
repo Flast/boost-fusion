@@ -21,18 +21,17 @@ namespace boost { namespace fusion
     {
         template <typename Sequence, typename F>
         struct for_each
+          : enable_if<
+                traits::is_sequence<Sequence>
+              , void
+            >
         {
-            typedef void type;
         };
     }
 
     template <typename Sequence, typename F>
     BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename
-        enable_if<
-            traits::is_sequence<Sequence>
-          , void
-        >::type
+    inline typename result_of::for_each<Sequence, F>::type
     for_each(Sequence& seq, F const& f)
     {
         detail::for_each(seq, f, typename traits::is_segmented<Sequence>::type());
@@ -40,11 +39,7 @@ namespace boost { namespace fusion
 
     template <typename Sequence, typename F>
     BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline typename
-        enable_if<
-            traits::is_sequence<Sequence>
-          , void
-        >::type
+    inline typename result_of::for_each<Sequence, F>::type
     for_each(Sequence const& seq, F const& f)
     {
         detail::for_each(seq, f, typename traits::is_segmented<Sequence>::type());

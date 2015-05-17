@@ -23,24 +23,24 @@ struct null
 };
 
 // fold
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::fold<int                , int, null>));
 // FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::fold<int                , int, null>));
 //SFINAE_FRIENDLY_ASSERT((fusion::result_of::fold<sfinae_friendly::v0, int, int >));
 
 // reverse_fold
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::reverse_fold<int                , int, null>));
 // FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::reverse_fold<int                , int, null>));
 //SFINAE_FRIENDLY_ASSERT((fusion::result_of::reverse_fold<sfinae_friendly::v0, int, int >));
 
 // iter_fold
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::iter_fold<int                , int, null>));
 // FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::<int                , int, null>));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::<sfinae_friendly::v0, int, int >));
+//SFINAE_FRIENDLY_ASSERT((fusion::result_of::iter_fold<sfinae_friendly::v0, int, int >));
 
 // reverse_iter_fold
+SFINAE_FRIENDLY_ASSERT((fusion::result_of::reverse_iter_fold<int                , int, null>));
 // FIXME
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::<int                , int, null>));
-//SFINAE_FRIENDLY_ASSERT((fusion::result_of::<sfinae_friendly::v0, int, int >));
+//SFINAE_FRIENDLY_ASSERT((fusion::result_of::reverse_iter_fold<sfinae_friendly::v0, int, int >));
 
 // accumulate
 // FIXME
@@ -48,9 +48,9 @@ struct null
 //SFINAE_FRIENDLY_ASSERT((fusion::result_of::accumulate<sfinae_friendly::v0, int, int >));
 
 // for_each
+SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::for_each<int                , null>));
+SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::for_each<int                , int >));
 // FIXME
-//SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::for_each<int                , null>));
-//SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::for_each<int                , int >));
 //SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::for_each<sfinae_friendly::v0, int >));
 //SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::for_each<sfinae_friendly::v1, int >));
 //SFINAE_FRIENDLY_ASSERT((boost::fusion::result_of::for_each<sfinae_friendly::v2, int >));
