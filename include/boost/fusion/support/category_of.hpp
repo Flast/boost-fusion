@@ -20,6 +20,8 @@ namespace boost { namespace fusion
     struct mpl_sequence_tag; // mpl sequence tag
     struct std_pair_tag; // std::pair tag
 
+    struct no_fusion_category_tag {};
+
     struct incrementable_traversal_tag {};
 
     struct single_pass_traversal_tag
@@ -45,6 +47,16 @@ namespace boost { namespace fusion
         {
             template<typename T>
             struct apply : detail::fusion_category_of<T> {};
+        };
+
+        template <>
+        struct category_of_impl<non_fusion_tag>
+        {
+            template <typename T>
+            struct apply
+            {
+                typedef no_fusion_category_tag type;
+            };
         };
 
         template <>
