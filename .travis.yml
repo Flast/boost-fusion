@@ -79,6 +79,9 @@ before_install:
     - git status
     - rm -rf $BOOST/libs/$BOOST_REMOVE
     - mv $TRAVIS_BUILD_DIR $BOOST/libs/$PROJECT_TO_TEST
+    # TMP
+    - rm -rf $BOOST/libs/fusion
+    - mv $BOOST/libs/$PROJECT_TO_TEST $BOOST/libs/fusion
     - TRAVIS_BUILD_DIR=$BOOST/libs/$PROJECT_TO_TEST
     - ./bootstrap.sh
     - ./b2 headers
