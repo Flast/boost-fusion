@@ -82,7 +82,7 @@ before_install:
     # TMP
     - rm -rf $BOOST/libs/fusion
     - mv $BOOST/libs/$PROJECT_TO_TEST $BOOST/libs/fusion
-    - PROJECT_TO_TEST=$BOOST/libs/fusion
+    - PROJECT_TO_TEST=fusion
     # TMP
     - TRAVIS_BUILD_DIR=$BOOST/libs/$PROJECT_TO_TEST
     - ./bootstrap.sh
