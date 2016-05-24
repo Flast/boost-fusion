@@ -16,7 +16,7 @@ language: cpp
 dist: trusty
 compiler:
     - gcc
-    #- clang
+    - clang
 
 os:
     - linux
@@ -41,6 +41,7 @@ env:
     matrix:
         - CXX_STANDARD=c++98
         - CXX_STANDARD=c++11
+        - CXX_STANDARD=c++14
 
 ###############################################################################################################
 # From this point and below code is same for all the Boost libs
@@ -59,6 +60,7 @@ before_install:
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
     - sudo apt-get update -q
     - sudo apt-get install -y g++-5
+    - [[ $CC = "gcc" ]] && CC=gcc-5
     # Set this to the name of the library
     - PROJECT_TO_TEST=`basename $TRAVIS_BUILD_DIR`
     # Cloning Boost libraries (fast nondeep cloning)
@@ -91,7 +93,7 @@ before_install:
 
 script:
     # `--coverage` flags required to generate coverage info for Coveralls
-    - ../../../b2 testing.launcher=valgrind address-model=64 architecture=x86 toolset=$CC-5 cxxflags="--coverage -DBOOST_TRAVISCI_BUILD -std=$CXX_STANDARD" linkflags="--coverage"
+    - ../../../b2 testing.launcher=valgrind address-model=64 architecture=x86 toolset=$CC cxxflags="--coverage -DBOOST_TRAVISCI_BUILD -std=$CXX_STANDARD" linkflags="--coverage"
 
 after_success:
     # Copying Coveralls data to a separate folder
