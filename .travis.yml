@@ -60,7 +60,7 @@ before_install:
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
     - sudo apt-get update -q
     - sudo apt-get install -y g++-5
-    - [[ $CC = "gcc" ]] && CC=gcc-5
+    #- [[ $CC = "gcc" ]] && CC=gcc-5
     # Set this to the name of the library
     - PROJECT_TO_TEST=`basename $TRAVIS_BUILD_DIR`
     # Cloning Boost libraries (fast nondeep cloning)
