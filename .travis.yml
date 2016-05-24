@@ -11,7 +11,7 @@
 #
 # File revision #5
 
-sudo: false
+sudo: required
 language: cpp
 dist: trusty
 compiler:
