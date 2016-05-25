@@ -21,6 +21,11 @@ compiler:
 os:
     - linux
 
+branches:
+    only:
+        - master
+        - develop
+
 env:
     global:
         # Autodetect Boost branch by using the following code: - BRANCH_TO_TEST=$TRAVIS_BRANCH
