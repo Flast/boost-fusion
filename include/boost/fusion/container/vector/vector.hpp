@@ -123,7 +123,7 @@ namespace boost { namespace fusion
 
         // Object proxy since preserve object order
         template <std::size_t, typename T>
-        struct store
+        struct store : private detail::propagate_trivialness<T>
         {
             BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
             store()
@@ -151,7 +151,6 @@ namespace boost { namespace fusion
         struct vector_data<detail::index_sequence<I...>, T...>
             : store<I, T>...
             , sequence_base<vector_data<detail::index_sequence<I...>, T...> >
-            , private detail::propagate_trivialness<T...>
         {
             typedef vector_tag                  fusion_tag;
             typedef fusion_sequence_tag         tag; // this gets picked up by MPL

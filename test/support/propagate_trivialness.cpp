@@ -156,28 +156,20 @@ BOOST_MPL_ASSERT((is_base_of<non_trivial_base, propagate_trivialness<user_provid
 #endif
 
 
-BOOST_MPL_ASSERT((is_base_of<trivial_base, propagate_trivialness<int, float, void*> >));
-BOOST_MPL_ASSERT((is_base_of<non_trivial_base, propagate_trivialness<int, float&, void*> >));
-BOOST_FUSION_ASSERT_CWG496((is_base_of<trivial_base, propagate_trivialness<int, float, trivial> >));
-BOOST_MPL_ASSERT((is_base_of<non_trivial_base, propagate_trivialness<int, float, user_provided_copy> >));
-BOOST_MPL_ASSERT((is_base_of<non_trivial_base, propagate_trivialness<int, float, user_provided_move> >));
-BOOST_MPL_ASSERT((is_base_of<non_trivial_base, propagate_trivialness<int, float, user_provided_dtor> >));
-
-
-struct S1 : private propagate_trivialness<int, float, void*> { };
+struct S1 : private propagate_trivialness<int> { };
 BOOST_MPL_ASSERT((is_trivially_copyable<S1>));
 
-struct S2 : private propagate_trivialness<int, float&, void*> { };
+struct S2 : private propagate_trivialness<float&> { };
 BOOST_MPL_ASSERT_NOT((is_trivially_copyable<S2>));
 
-struct S3 : private propagate_trivialness<int, float, trivial> { };
+struct S3 : private propagate_trivialness<trivial> { };
 BOOST_FUSION_ASSERT_CWG496((is_trivially_copyable<S3>));
 
-struct S4 : private propagate_trivialness<int, float, user_provided_copy> { };
+struct S4 : private propagate_trivialness<user_provided_copy> { };
 BOOST_MPL_ASSERT_NOT((is_trivially_copyable<S4>));
 
-struct S5 : private propagate_trivialness<int, float, user_provided_move> { };
+struct S5 : private propagate_trivialness<user_provided_move> { };
 BOOST_MPL_ASSERT_NOT((is_trivially_copyable<S5>));
 
-struct S6 : private propagate_trivialness<int, float, user_provided_dtor> { };
+struct S6 : private propagate_trivialness<user_provided_dtor> { };
 BOOST_MPL_ASSERT_NOT((is_trivially_copyable<S6>));
