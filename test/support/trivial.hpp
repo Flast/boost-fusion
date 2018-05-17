@@ -45,6 +45,11 @@ struct user_provided_copy
 {
     user_provided_copy(user_provided_copy const&);
     user_provided_copy& operator=(user_provided_copy const&);
+
+#ifndef BOOST_NO_CXX11_DEFAULTED_MOVES
+    user_provided_copy(user_provided_copy&&) = default;
+    user_provided_copy& operator=(user_provided_copy&&) = default;
+#endif
 };
 
 
@@ -53,6 +58,11 @@ struct user_provided_move
 {
     user_provided_move(user_provided_move&&);
     user_provided_move& operator=(user_provided_move&&);
+
+#ifndef BOOST_NO_CXX11_DEFAULTED_FUNCTIONS
+    user_provided_move(user_provided_move const&) = default;
+    user_provided_move& operator=(user_provided_move const&) = default;
+#endif
 };
 #endif
 
@@ -60,6 +70,15 @@ struct user_provided_move
 struct user_provided_dtor
 {
     ~user_provided_dtor();
+
+#ifndef BOOST_NO_CXX11_DEFAULTED_FUNCTIONS
+    user_provided_dtor(user_provided_dtor const&) = default;
+    user_provided_dtor& operator=(user_provided_dtor const&) = default;
+#endif
+#ifndef BOOST_NO_CXX11_DEFAULTED_MOVES
+    user_provided_dtor(user_provided_dtor&&) = default;
+    user_provided_dtor& operator=(user_provided_dtor&&) = default;
+#endif
 };
 
 #endif
