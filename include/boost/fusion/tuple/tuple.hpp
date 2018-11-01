@@ -94,7 +94,8 @@ namespace boost { namespace fusion
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
         tuple& operator=(U&& rhs)
         {
-            base::assign_sequence(std::forward<U>(rhs));
+            typedef typename traits::category_of<typename remove_reference<U>::type>::type category;
+            base::assign(std::forward<U>(rhs), category());
             return *this;
         }
     };

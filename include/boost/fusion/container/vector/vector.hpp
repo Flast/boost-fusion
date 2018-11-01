@@ -24,6 +24,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include <boost/fusion/support/sequence_base.hpp>
 #include <boost/fusion/support/is_sequence.hpp>
+#include <boost/fusion/support/category_of.hpp>
 #include <boost/fusion/support/detail/and.hpp>
 #include <boost/fusion/support/detail/index_sequence.hpp>
 #include <boost/fusion/container/vector/detail/at_impl.hpp>
@@ -33,6 +34,7 @@
 #include <boost/fusion/sequence/intrinsic/begin.hpp>
 #include <boost/fusion/sequence/intrinsic/size.hpp>
 #include <boost/fusion/iterator/advance.hpp>
+#include <boost/fusion/iterator/next.hpp>
 #include <boost/fusion/iterator/deref.hpp>
 #include <boost/core/enable_if.hpp>
 #include <boost/mpl/int.hpp>
@@ -216,23 +218,23 @@ namespace boost { namespace fusion
             template <typename Sequence>
             BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
             void
-            assign_sequence(Sequence&& seq)
+            assign(Sequence&& seq, incrementable_traversal_tag)
             {
-                assign(std::forward<Sequence>(seq), detail::index_sequence<I...>());
+                assign_incremental(begin(seq), detail::index_sequence<I...>());
             }
 
-            template <typename Sequence>
+            template <typename Iterator>
             BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
             void
-            assign(Sequence&&, detail::index_sequence<>) {}
+            assign_incremental(Iterator&&, detail::index_sequence<>) {}
 
-            template <typename Sequence, std::size_t N, std::size_t ...M>
+            template <typename Iterator, std::size_t N, std::size_t ...M>
             BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
             void
-            assign(Sequence&& seq, detail::index_sequence<N, M...>)
+            assign_incremental(Iterator&& itr, detail::index_sequence<N, M...>)
             {
-                at_impl(mpl::int_<N>()) = vector_detail::forward_at_c<N>(seq);
-                assign(std::forward<Sequence>(seq), detail::index_sequence<M...>());
+                at_impl(mpl::int_<N>()) = *itr;
+                assign_incremental(next(itr), detail::index_sequence<M...>());
             }
 
         private:
@@ -306,7 +308,8 @@ namespace boost { namespace fusion
         vector&
         operator=(Sequence&& rhs)
         {
-            base::assign_sequence(std::forward<Sequence>(rhs));
+            typedef typename traits::category_of<typename remove_reference<Sequence>::type>::type category;
+            base::assign(std::forward<Sequence>(rhs), category());
             return *this;
         }
     };
