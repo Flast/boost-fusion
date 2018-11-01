@@ -33,6 +33,9 @@
 #include <boost/fusion/container/vector/detail/end_impl.hpp>
 #include <boost/fusion/sequence/intrinsic/begin.hpp>
 #include <boost/fusion/sequence/intrinsic/size.hpp>
+#if defined(BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX)
+#include <boost/fusion/sequence/intrinsic/at.hpp>
+#endif
 #include <boost/fusion/iterator/advance.hpp>
 #include <boost/fusion/iterator/next.hpp>
 #include <boost/fusion/iterator/deref.hpp>
@@ -236,6 +239,27 @@ namespace boost { namespace fusion
                 at_impl(mpl::int_<N>()) = *itr;
                 assign_incremental(next(itr), detail::index_sequence<M...>());
             }
+
+#if defined(BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX)
+            template <typename Sequence>
+            BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+            void
+            assign(Sequence&& seq, random_access_traversal_tag)
+            {
+                assign_random(std::forward<Sequence>(seq), detail::index_sequence<I...>());
+            }
+
+            template <typename Sequence, std::size_t.... N>
+            BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+            void
+            assign_random(Sequence&& seq, detail::index_sequence<N...>)
+            {
+                BOOST_ATTRIBUTE_UNUSED int const init[] =
+                {
+                    ((void)(at_impl(mpl::int_<N>()) = at_c<N>(std::forward<Sequence>(seq))), 0)...
+                };
+            }
+#endif
 
         private:
             template <std::size_t J>
